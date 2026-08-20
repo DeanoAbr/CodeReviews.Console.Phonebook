@@ -62,13 +62,13 @@ Key decisions and why:
 
 <!-- Personalize this before submitting! -->
 
-Building this project was my first real hands-on experience with an ORM, and the biggest eye-opener was the SQL logging tip. Watching my LINQ queries turn into actual `SELECT`/`INSERT`/`UPDATE` statements — complete with parameters — made Entity Framework feel much less like magic. I could finally see what `SaveChanges()` was actually doing under the hood.
+This was my first real hands-on time with an ORM, and the biggest aha moment was turning on SQL logging. Watching my LINQ queries actually turn into real `SELECT`/`INSERT`/`UPDATE` statements — parameters and all — made Entity Framework feel a lot less like a black box. I could finally see what `SaveChanges()` was actually doing behind the scenes instead of just trusting it blindly.
 
-The Code-First workflow was surprisingly smooth: I wrote a C# class, and EF created a whole database table from it. Seeing the seed data appear in the table on the very first run was a great "it works!" moment.
+The Code-First workflow was way smoother than I expected. I wrote a plain C# class, and EF made a whole database table out of it, crazy. Seeing the data pop up in the table on the first run was one of those "dam, this is actually working" moments.
 
-The hardest part was change tracking. I hit a real bug where updating a contact right after adding it crashed with "another instance with the same key is already being tracked". I learned that EF keeps only one tracked instance per entity key, and that you have to detach a previously-added entity before attaching an updated copy. That was exactly the kind of problem the "handle errors so the app doesn't crash" requirement is about — and it's why every service method in this project returns a result instead of throwing.
+Change tracking is what really broke my brain, though. I ran into a bug where updating a contact right after adding it would blow up with "another instance with the same key is already being tracked." Turns out EF only keeps one tracked instance per entity key, so you've got to detach the previously-added entity before you attach an updated copy. That was basically a live example of why the "handle errors so the app doesn't crash" requirement exists in the first place — and it's why every service method in this project hands back a result instead of just throwing an exception.
 
-If I were to do it again, I'd probably explore EF Migrations instead of `EnsureCreated()`, since that's how real projects evolve their schemas. Next up: sending real emails and SMS with actual credentials, and maybe adding a search feature.
+If I did it again, I'd probably ditch `EnsureCreated()` and actually dig into EF Migrations, since that's closer to how real projects handle schema changes over time. Next on the list: hooking up real email and SMS with actual credentials, and maybe throwing in a search feature.
 
 ---
 
