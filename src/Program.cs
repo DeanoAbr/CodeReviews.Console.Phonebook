@@ -1,13 +1,25 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Phonebook.Controllers;
 using Phonebook.Data;
+using Phonebook.Services;
+using Phonebook.UI;
 
-using var context = new AppDbContext();
+Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-// Code-First: EF creates the database + schema (and seed data) on first run
-context.Database.EnsureCreated();
+try
+{
+    // Code-First: EF creates the database + schema (and seed data) on first run
+    using var context = new AppDbContext();
+    context.Database.EnsureCreated();
 
-var contacts = await context.Contacts.AsNoTracking().OrderBy(c => c.Name).ToListAsync();
+    var contactService = new ContactService(context);
+    var emailService = new EmailService();
+    var smsService = new SmsService();
 
-Console.WriteLine($"{contacts.Count} contact(s) in the database:");
-foreach (var c in contacts)
-    Console.WriteLine($"  {c.Id}. {c.Name} ({c.Category}) — {c.Email} — {c.PhoneNumber}");
+    var controller = new ContactController(contactService, emailService, smsService);
+
+    await controller.RunAsync();
+}
+catch (Exception ex)
+{
+    UserInterface.ShowError($"The app ran into an unexpected problem: {ex.Message}");
+}
