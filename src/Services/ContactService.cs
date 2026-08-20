@@ -56,6 +56,15 @@ public class ContactService(AppDbContext context)
     {
         try
         {
+            // EF only allows ONE tracked instance per key. If a previous operation
+            // (e.g. AddAsync) left the same entity tracked, detach it first so
+            // Update() can attach the edited copy.
+            var tracked = context.ChangeTracker.Entries<Contact>()
+                .Select(e => e.Entity)
+                .FirstOrDefault(c => c.Id == contact.Id);
+            if (tracked is not null)
+                context.Entry(tracked).State = EntityState.Detached;
+
             context.Contacts.Update(contact);
             await context.SaveChangesAsync();
             return (true, null);
