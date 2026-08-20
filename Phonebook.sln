@@ -5,6 +5,10 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Phonebook", "Phonebook.csproj", "{3102F8F0-05FC-40B2-B1DF-F1DFE78567F9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{2CFA9E6B-0C5A-4C06-9AF5-D2E27CD4F7E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Phonebook.Tests", "tests\Phonebook.Tests\Phonebook.Tests.csproj", "{836D2B71-F9E0-4E8C-B556-4F848906CAD1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +22,12 @@ Global
 		{3102F8F0-05FC-40B2-B1DF-F1DFE78567F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3102F8F0-05FC-40B2-B1DF-F1DFE78567F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3102F8F0-05FC-40B2-B1DF-F1DFE78567F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{836D2B71-F9E0-4E8C-B556-4F848906CAD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{836D2B71-F9E0-4E8C-B556-4F848906CAD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{836D2B71-F9E0-4E8C-B556-4F848906CAD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{836D2B71-F9E0-4E8C-B556-4F848906CAD1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{836D2B71-F9E0-4E8C-B556-4F848906CAD1} = {2CFA9E6B-0C5A-4C06-9AF5-D2E27CD4F7E2}
 	EndGlobalSection
 EndGlobal
