@@ -27,12 +27,30 @@ public class ContactController(ContactService contactService, EmailService email
 
             switch (choice)
             {
-                case "View all contacts": await ViewAllAsync(); break;
-                case "Add contact": await AddAsync(); break;
-                case "Update contact": await UpdateAsync(); break;
-                case "Delete contact": await DeleteAsync(); break;
-                case "Send email": await SendEmailAsync(); break;
-                case "Send SMS": await SendSmsAsync(); break;
+                case "View all contacts":
+                    await ViewAllAsync();
+                    UserInterface.Pause();
+                    break;
+                case "Add contact":
+                    await AddAsync();
+                    UserInterface.Pause();
+                    break;
+                case "Update contact":
+                    await UpdateAsync();
+                    UserInterface.Pause();
+                    break;
+                case "Delete contact":
+                    await DeleteAsync();
+                    UserInterface.Pause();
+                    break;
+                case "Send email":
+                    await SendEmailAsync();
+                    UserInterface.Pause();
+                    break;
+                case "Send SMS":
+                    await SendSmsAsync();
+                    UserInterface.Pause();
+                    break;
                 case "Exit": return;
             }
         }

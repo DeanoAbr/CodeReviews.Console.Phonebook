@@ -70,8 +70,11 @@ public static class UserInterface
     public static void ShowError(string error) =>
         AnsiConsole.MarkupLine($"[red]{Markup.Escape(error)}[/]");
 
-    public static void Pause() =>
+    public static void Pause()
+    {
         AnsiConsole.MarkupLine("[grey]Press any key to continue...[/]");
+        Console.ReadKey(intercept: true);
+    }
 
     public static void Clear() => AnsiConsole.Clear();
 }
